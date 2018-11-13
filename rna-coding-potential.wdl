@@ -11,7 +11,8 @@ workflow RnaCodingPotential {
         File? transcriptsFasta
         File? transcriptsBed
         Reference? reference
-        String cpatModel = "Human"
+        File cpatLogitModel
+        File cpatHex
     }
 
     File? referenceFasta = if defined(reference) then select_first([reference]).fasta else reference # Should be `else none`
@@ -23,8 +24,8 @@ workflow RnaCodingPotential {
             gene = select_first([transcriptsFasta, transcriptsBed]),
             referenceGenome = referenceFasta,
             referenceGenomeIndex = referenceFastaIndex,
-            hex = cpatModel,
-            logitModel=cpatModel,
-            outFilePath=outputDir + "/cpat.tsv"
+            hex = cpatHex,
+            logitModel = cpatLogitModel,
+            outFilePath = outputDir + "/cpat.tsv"
     }
 }

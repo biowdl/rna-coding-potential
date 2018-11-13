@@ -24,6 +24,7 @@ package biowdl.test
 import java.io.File
 
 import nl.biopet.utils.biowdl.Pipeline
+import nl.biopet.utils.biowdl.fixtureFile
 import nl.biopet.utils.biowdl.references.Reference
 
 trait RnaCodingPotential extends Pipeline with Reference {
@@ -35,7 +36,10 @@ trait RnaCodingPotential extends Pipeline with Reference {
           "fasta" -> referenceFasta.getAbsolutePath,
           "fai" -> referenceFastaIndexFile.getAbsolutePath,
           "dict" -> referenceFastaDictFile.getAbsolutePath
-        )
+        ),
+        s"$startPipelineName.cpatLogitModel" -> fixtureFile(
+          "cpat/Human_logitModel.RData"),
+        s"$startPipelineName.cpatHex" -> fixtureFile("cpat/Human_Hexamer.tsv")
       )
 
   override def startPipelineName: String = "RnaCodingPotential"
