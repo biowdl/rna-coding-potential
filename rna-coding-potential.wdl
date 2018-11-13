@@ -12,15 +12,17 @@ workflow RnaCodingPotential {
         File? transcriptsBed
         Reference? reference
         String cpatModel = "Human"
-
     }
+
+    File? referenceFasta = if defined(reference) then select_first([reference]).fasta else reference # Should be `else none`
+    File? referenceFastaIndex = if defined(reference) then select_first([reference]).fai else reference # Should be `else none`
 
     call cpat.CPAT as CPAT {
         input:
             # cpat accepts transcripts in both Fasta and Bed format
             gene = select_first([transcriptsFasta, transcriptsBed]),
-            referenceGenome = reference.fasta,
-            referenceGenomeIndex = reference.fai,
+            referenceGenome = referenceFasta,
+            referenceGenomeIndex = referenceFastaIndex,
             hex = cpatModel,
             logitModel=cpatModel,
             outFilePath=outputDir + "/cpat.tsv"
