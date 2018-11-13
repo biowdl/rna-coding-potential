@@ -21,8 +21,14 @@
 
 package biowdl.test
 
-import java.io.File
+import nl.biopet.utils.biowdl.fixtureFile
+import nl.biopet.utils.biowdl.references.TestReference
 
-import nl.biopet.utils.biowdl.PipelineSuccess
-
-trait TestPipelineSuccess extends TestPipeline with PipelineSuccess
+class RnaCodingPotentialTest
+    extends RnaCodingPotentialSuccess
+    with TestReference {
+  override def inputs: Map[String, Any] = super.inputs ++ Map(
+    s"$startPipelineName.transcriptsFasta" -> fixtureFile(
+      "samples/rna3/rna3_not_guided.fa")
+  )
+}
