@@ -21,8 +21,9 @@
 
 package biowdl.test
 
-import java.io.File
+import nl.biopet.utils.biowdl.samples.{Wgs1PairedEnd, Wgs2PairedEnd}
 
-import nl.biopet.utils.biowdl.PipelineSuccess
+class RnaCodingPotential
+    extends RnaCodingPotentialSucces {
 
-trait TestPipelineSuccess extends TestPipeline with PipelineSuccess
+}

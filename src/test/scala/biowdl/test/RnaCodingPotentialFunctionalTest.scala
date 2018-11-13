@@ -21,16 +21,9 @@
 
 package biowdl.test
 
-import java.io.File
+import nl.biopet.utils.biowdl.samples.{Wgs1PairedEnd, Wgs2PairedEnd}
 
-import nl.biopet.utils.biowdl.multisample.MultisamplePipeline
-
-trait TestPipeline extends MultisamplePipeline {
-  override def inputs: Map[String, Any] =
-    super.inputs ++
-      Map(
-        s"$startPipelineName.outputDir" -> outputDir.getAbsolutePath
-      )
-
-  def startFile: File = new File("pipeline.wdl")
+class RnaCodingPotentialFunctionalTest
+    extends RnaCodingPotentialSucces {
+  override def functionalTest = true
 }

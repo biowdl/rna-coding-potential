@@ -21,9 +21,16 @@
 
 package biowdl.test
 
-import nl.biopet.utils.biowdl.samples.{Wgs1PairedEnd, Wgs2PairedEnd}
+import java.io.File
 
-class TestPipelineTest
-    extends TestPipelineSuccess
-    with Wgs1PairedEnd
-    with Wgs2PairedEnd
+
+trait RnaCodingPotential extends Pipeline with {
+  override def inputs: Map[String, Any] =
+    super.inputs ++
+      Map(
+        s"$startPipelineName.outputDir" -> outputDir.getAbsolutePath
+      )
+
+  override def startPipelineName: String = "RnaCodingPotential"
+  def startFile: File = new File("rna-coding-potential.wdl")
+}

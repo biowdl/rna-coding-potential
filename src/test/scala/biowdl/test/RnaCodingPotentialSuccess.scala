@@ -21,11 +21,8 @@
 
 package biowdl.test
 
-import nl.biopet.utils.biowdl.samples.{Wgs1PairedEnd, Wgs2PairedEnd}
+import java.io.File
 
-class TestPipelineFunctionalTest
-    extends TestPipelineSuccess
-    with Wgs1PairedEnd
-    with Wgs2PairedEnd {
-  override def functionalTest = true
-}
+import nl.biopet.utils.biowdl.PipelineSuccess
+
+trait RnaCodingPotentialSuccess extends TestPipeline with PipelineSuccess
