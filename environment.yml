@@ -1,8 +1,9 @@
-name: pipeline-template
+name: rna-coding-potential
 channels:
   - conda-forge
   - bioconda
   - defaults
-  dependencies:
-  - pyyaml
-  - biopet-sampleconfig==0.2
+dependencies:
+  - python <3
+  - pip:
+     - CPAT
