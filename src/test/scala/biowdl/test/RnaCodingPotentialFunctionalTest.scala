@@ -21,9 +21,10 @@
 
 package biowdl.test
 
-import nl.biopet.utils.biowdl.samples.{Wgs1PairedEnd, Wgs2PairedEnd}
+import nl.biopet.utils.biowdl.references.GRCh38_no_alt_analysis_set
 
 class RnaCodingPotentialFunctionalTest
-    extends RnaCodingPotentialSucces {
+    extends RnaCodingPotentialSuccess
+    with GRCh38_no_alt_analysis_set {
   override def functionalTest = true
 }

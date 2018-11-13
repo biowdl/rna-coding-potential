@@ -25,4 +25,8 @@ import java.io.File
 
 import nl.biopet.utils.biowdl.PipelineSuccess
 
-trait RnaCodingPotentialSuccess extends TestPipeline with PipelineSuccess
+trait RnaCodingPotentialSuccess
+    extends RnaCodingPotential
+    with PipelineSuccess {
+  addMustHaveFile("cpat.tsv")
+}

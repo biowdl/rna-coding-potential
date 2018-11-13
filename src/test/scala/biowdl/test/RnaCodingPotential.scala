@@ -23,12 +23,19 @@ package biowdl.test
 
 import java.io.File
 
+import nl.biopet.utils.biowdl.Pipeline
+import nl.biopet.utils.biowdl.references.Reference
 
-trait RnaCodingPotential extends Pipeline with {
+trait RnaCodingPotential extends Pipeline with Reference {
   override def inputs: Map[String, Any] =
     super.inputs ++
       Map(
-        s"$startPipelineName.outputDir" -> outputDir.getAbsolutePath
+        s"$startPipelineName.outputDir" -> outputDir.getAbsolutePath,
+        s"$startPipelineName.reference" -> Map(
+          "fasta" -> referenceFasta.getAbsolutePath,
+          "fai" -> referenceFastaIndexFile.getAbsolutePath,
+          "dict" -> referenceFastaDictFile.getAbsolutePath
+        )
       )
 
   override def startPipelineName: String = "RnaCodingPotential"

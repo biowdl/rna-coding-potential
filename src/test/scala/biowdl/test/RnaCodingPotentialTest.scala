@@ -21,9 +21,13 @@
 
 package biowdl.test
 
-import nl.biopet.utils.biowdl.samples.{Wgs1PairedEnd, Wgs2PairedEnd}
+import nl.biopet.utils.biowdl.fixtureFile
+import nl.biopet.utils.biowdl.references.TestReference
 
-class RnaCodingPotential
-    extends RnaCodingPotentialSucces {
-
+class RnaCodingPotentialTest
+    extends RnaCodingPotentialSuccess
+    with TestReference {
+  override def inputs: Map[String, Any] = super.inputs ++ Map(
+    "transcriptsFasta" -> fixtureFile("samples/rna3/rna3_not_guided.fa")
+  )
 }
