@@ -1,6 +1,7 @@
 version 1.0
 
 import "tasks/CPAT.wdl" as cpat
+import "tasks/gffread.wdl" as gffread
 
 # Import common to get the reference struct
 import "tasks/common.wdl" as common
@@ -8,20 +9,26 @@ import "tasks/common.wdl" as common
 workflow RnaCodingPotential {
     input {
         String outputDir
-        File? transcriptsFasta
-        File? transcriptsBed
-        Reference? reference
+        File transcriptsGff
+        Reference reference
         File cpatLogitModel
         File cpatHex
     }
 
-    File? referenceFasta = if defined(reference) then select_first([reference]).fasta else reference # Should be `else none`
-    File? referenceFastaIndex = if defined(reference) then select_first([reference]).fai else reference # Should be `else none`
+    File referenceFasta = reference.fasta
+    File referenceFastaIndex = reference.fai
+
+    call gffread.GffRead as gffread {
+        input:
+            inputGff = transcriptsGff,
+            genomicSequence = referenceFasta,
+            genomicIndex = referenceFastaIndex,
+            exonsFastaPath = outputDir + "/transcripts.fasta"
+    }
 
     call cpat.CPAT as CPAT {
         input:
-            # cpat accepts transcripts in both Fasta and Bed format
-            gene = select_first([transcriptsFasta, transcriptsBed]),
+            gene = select_first([gffread.exonsFasta]),
             referenceGenome = referenceFasta,
             referenceGenomeIndex = referenceFastaIndex,
             hex = cpatHex,
