@@ -6,5 +6,6 @@ channels:
 dependencies:
   - python <3
   - pip:
-     - CPAT
-  - r-base
+     - CPAT==1.2.4
+  - r-base==3.5.1
+  - gffread==0.9.9
