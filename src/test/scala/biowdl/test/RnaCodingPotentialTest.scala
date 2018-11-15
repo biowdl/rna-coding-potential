@@ -29,6 +29,6 @@ class RnaCodingPotentialTest
     with TestReference {
   override def inputs: Map[String, Any] = super.inputs ++ Map(
     s"$startPipelineName.transcriptsGff" -> fixtureFile(
-      "samples/rna3/rna3_not_guided.gff")
+      "samples/rna3/rna3_not_guided.gtf")
   )
 }
