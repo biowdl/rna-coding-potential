@@ -35,4 +35,6 @@ workflow RnaCodingPotential {
             logitModel = cpatLogitModel,
             outFilePath = outputDir + "/cpat.tsv"
     }
+
+    output {}
 }
