@@ -36,5 +36,7 @@ workflow RnaCodingPotential {
             outFilePath = outputDir + "/cpat.tsv"
     }
 
-    output {}
+    output {
+        File cpatOutput = CPAT.outfile
+    }
 }
