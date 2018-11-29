@@ -37,6 +37,6 @@ workflow RnaCodingPotential {
     }
 
     output {
-        File cpatOutput = CPAT.outfile
+        File cpatOutput = CPAT.outFile
     }
 }
