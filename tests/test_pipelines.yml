@@ -1,0 +1,10 @@
+- name: Rna3SingleEndVariantCalling
+  tags:
+    - integration
+  command: >-
+    bash -c '
+    TEST_JSON=tests/integration/base.json ;
+    sed -i "2i\"RnaCodingPotential.outputDir\":\"$PWD/test-output\"," $TEST_JSON ;
+    cromwell run -i $TEST_JSON rna-coding-potential.wdl'
+  files:
+    - path: "test-output/cpat.tsv"

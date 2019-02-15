@@ -1,0 +1,10 @@
+{
+  "RnaCodingPotential.reference": {
+    "fasta": "tests/data/reference.fasta",
+    "fai": "tests/data/reference.fasta.fai",
+    "dict": "tests/data/reference.dict"
+  },
+  "RnaCodingPotential.cpatLogitModel": "tests/data/Human_logitModel.RData",
+  "RnaCodingPotential.cpatHex": "tests/data/Human_Hexamer.tsv",
+  "RnaCodingPotential.transcriptsGff": "tests/data/rna3_not_guided.gtf"
+}
