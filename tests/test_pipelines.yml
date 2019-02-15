@@ -1,4 +1,4 @@
-- name: Rna3SingleEndVariantCalling
+- name: base
   tags:
     - integration
   command: >-
