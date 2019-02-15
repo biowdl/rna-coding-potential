@@ -30,10 +30,7 @@ script:
 
 matrix:
   include:
-    - env: TEST=single_sample
-    - env: TEST=single_sample_gvcf
-    - env: TEST=two_sample
-    - env: TEST=two_sample_gvcf
+    - env: TEST=base
     # Below is for testing if all files are valid and if all submodules are up to date.
     - env: TEST=Womtool validate and submodule up to date
       install:
