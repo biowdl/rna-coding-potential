@@ -10,13 +10,11 @@ workflow RnaCodingPotential {
     input {
         String outputDir
         File transcriptsGff
-        Reference reference
+        File referenceFasta
+        File referenceFastaIndex
         File cpatLogitModel
         File cpatHex
     }
-
-    File referenceFasta = reference.fasta
-    File referenceFastaIndex = reference.fai
 
     call gffread.GffRead as gffread {
         input:
