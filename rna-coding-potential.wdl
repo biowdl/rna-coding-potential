@@ -16,7 +16,7 @@ workflow RnaCodingPotential {
         File cpatHex
         Map[String, String] dockerTags = {
             "gffread": "0.9.12--0",
-            "cpat": "1.2.4"
+            "cpat": "v1.2.4_cv1"
         }
     }
 
