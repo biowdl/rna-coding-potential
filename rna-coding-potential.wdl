@@ -14,6 +14,10 @@ workflow RnaCodingPotential {
         File referenceFastaIndex
         File cpatLogitModel
         File cpatHex
+        Map[String, String] dockerTags = {
+            "gffread": "0.9.12--0",
+            "cpat": "v1.2.4_cv1"
+        }
     }
 
     call gffread.GffRead as gffread {
@@ -21,7 +25,8 @@ workflow RnaCodingPotential {
             inputGff = transcriptsGff,
             genomicSequence = referenceFasta,
             genomicIndex = referenceFastaIndex,
-            exonsFastaPath = outputDir + "/transcripts.fasta"
+            exonsFastaPath = outputDir + "/transcripts.fasta",
+            dockerTag = dockerTags["gffread"]
     }
 
     call cpat.CPAT as CPAT {
@@ -31,7 +36,8 @@ workflow RnaCodingPotential {
             referenceGenomeIndex = referenceFastaIndex,
             hex = cpatHex,
             logitModel = cpatLogitModel,
-            outFilePath = outputDir + "/cpat.tsv"
+            outFilePath = outputDir + "/cpat.tsv",
+            dockerTag = dockerTags["cpat"]
     }
 
     output {
