@@ -8,7 +8,7 @@ import "tasks/common.wdl" as common
 
 workflow RnaCodingPotential {
     input {
-        String outputDir
+        String outputDir = "."
         File transcriptsGff
         File referenceFasta
         File referenceFastaIndex
