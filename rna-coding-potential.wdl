@@ -8,15 +8,15 @@ import "tasks/common.wdl" as common
 
 workflow RnaCodingPotential {
     input {
-        String outputDir
+        String outputDir = "."
         File transcriptsGff
         File referenceFasta
         File referenceFastaIndex
         File cpatLogitModel
         File cpatHex
-        Map[String, String] dockerTags = {
-            "gffread": "0.9.12--0",
-            "cpat": "v1.2.4_cv1"
+        Map[String, String] dockerImages = {
+            "gffread": "quay.io/biocontainers/gffread:0.9.12--0",
+            "cpat": "biocontainers/cpat:v1.2.4_cv1"
         }
     }
 
@@ -26,7 +26,7 @@ workflow RnaCodingPotential {
             genomicSequence = referenceFasta,
             genomicIndex = referenceFastaIndex,
             exonsFastaPath = outputDir + "/transcripts.fasta",
-            dockerTag = dockerTags["gffread"]
+            dockerImage = dockerImages["gffread"]
     }
 
     call cpat.CPAT as CPAT {
@@ -37,7 +37,7 @@ workflow RnaCodingPotential {
             hex = cpatHex,
             logitModel = cpatLogitModel,
             outFilePath = outputDir + "/cpat.tsv",
-            dockerTag = dockerTags["cpat"]
+            dockerImage = dockerImages["cpat"]
     }
 
     output {
